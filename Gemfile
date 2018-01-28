@@ -15,6 +15,7 @@ gem 'turbolinks',               '~> 5'
 gem 'jbuilder',                 '~> 2.5'
 gem 'jquery-rails',             '~> 4.3', '>= 4.3.1'
 gem 'bootstrap',                '~> 4.0'
+gem 'bootstrap-glyphicons',     '~> 0.0.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -30,6 +31,7 @@ group :development do
   gem 'listen',                 '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen',  '~> 2.0.0'
+  gem 'guard',                  '~> 2.14', '>= 2.14.2'
   gem 'guard-rspec',            '~> 4.7', '>= 4.7.3'
 end
 

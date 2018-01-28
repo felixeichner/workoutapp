@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	root "dashboards#home"
+	root "dashboards#index"
 
-	get "dashboards/home"
+	get "dashboards/index"
 end

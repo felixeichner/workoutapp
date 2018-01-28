@@ -48,6 +48,9 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
+    bootstrap-glyphicons (0.0.1)
+      railties (>= 3.0)
+      sass (>= 3.2)
     builder (3.2.3)
     byebug (10.0.0)
     capybara (2.17.0)
@@ -228,9 +231,11 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.0)
+  bootstrap-glyphicons (~> 0.0.1)
   byebug
   capybara (~> 2.17)
   coffee-rails (~> 4.2)
+  guard (~> 2.14, >= 2.14.2)
   guard-rspec (~> 4.7, >= 4.7.3)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.1)
