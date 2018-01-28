@@ -9,7 +9,7 @@ RSpec.feature "Creating Excercise" do
 	scenario "with valid credentials" do
 		visit "/"
 		click_link "My Lounge"
-		click_button "New Exercise"
+		click_link "New Workout"
 
 		fill_in "Duration", with: "40"
 		fill_in "Workout details", with: "Bodypump"

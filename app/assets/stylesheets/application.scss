@@ -42,15 +42,19 @@ body {
 	border-radius: 10px;
 }
 
-.homeview-btn {
+.btn-default {
 	background-color: #DE9B00;
 	color: #575757;
-	font-weight: bold;
 }
 
-.homeview-btn:hover {
+.btn:hover {
 	color: #575757;
-	box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+	border: 1px solid grey;
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.5);
+}
+
+.homeview-btn {
+	font-weight: bold;
 }
 
 
@@ -63,6 +67,7 @@ body {
 	background-color: #f8d7da;
 	border-color: #f5c6cb;
 }
+
 
 /* Footer */
 
