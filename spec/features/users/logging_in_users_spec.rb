@@ -14,7 +14,10 @@ RSpec.feature "Log in user" do
 		click_button "Log in"
 
 		expect(page).to have_content "Signed in successfully."
+		expect(page).to have_link "Log out"
 		expect(page).to have_content "Signed in as #{@john.name}"
+		expect(page).not_to have_link(href: "/users/sign_up", count: 2)
+		expect(page).not_to have_link(href: "/users/sign_in", count: 2)
 	end
 
 	scenario "with invalid credentials" do
@@ -26,5 +29,7 @@ RSpec.feature "Log in user" do
 		click_button "Log in"
 
 		expect(page).to have_content "Invalid Email or password."
+		expect(page).not_to have_link "Log out"
+		expect(page).not_to have_content "Signed in as"
 	end
 end

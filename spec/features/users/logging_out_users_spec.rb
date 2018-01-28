@@ -11,6 +11,9 @@ RSpec.feature "Log out user" do
 		click_link "Log out"
 
 		expect(page).to have_content "Signed out successfully."
-		expect(page).not_to have_content "Signed in as #{@john.name}"
+		expect(page).not_to have_link "Log out"
+		expect(page).not_to have_content "Signed in as"
+		expect(page).to have_link(href: "/users/sign_up", count: 2)
+		expect(page).to have_link(href: "/users/sign_in", count: 2)
 	end
 end
