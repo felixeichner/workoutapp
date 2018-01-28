@@ -11,16 +11,33 @@ RSpec.feature "Creating Excercise" do
 		click_link "My Lounge"
 		click_link "New Workout"
 
-		fill_in "Duration", with: "40"
+		fill_in "Duration (min)", with: "40"
 		fill_in "Workout details", with: "Bodypump"
-		fill_in "Date", with: DateTime.now.strftime("%d.%m.%Y")
+		fill_in "Workout date", with: "01/01/2018"
 		expect(page).to have_link "Back"
 		expect {
-			click_button "Create Exercise"
+			click_button "Create Workout"
 		}.to change(Exercise, :count).by(1)
 
 		expect(Exercise.last.user_id).to eq @john.id
 		expect(current_path).to eq user_exercise_path(@john, Exercise.last)
-		expect(page).to have_content "Exercise has ben created"
+		expect(page).to have_content "Workout has been created"
+	end
+
+	scenario "with invalid credentials" do
+		visit "/"
+		click_link "My Lounge"
+		click_link "New Workout"
+
+		fill_in "Duration (min)", with: "0"
+		fill_in "Workout details", with: ""
+		fill_in "Workout date", with: "dd/mm/yyyy"
+		expect(page).to have_link "Back"
+		expect {
+			click_button "Create Workout"
+		}.to change(Exercise, :count).by(0)
+
+		expect(page).to have_content "prohibited the workout from being saved"
+		expect(page).to have_content "New workout for #{@john.name}"
 	end
 end

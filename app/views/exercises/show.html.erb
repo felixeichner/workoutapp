@@ -1,0 +1,24 @@
+<div class="offset-md-3 col-md-6">
+  <div class="card">
+    <div class="card-header text-center"><h2><%= "#{@exercise.user.name}'s Workout Details" %></h2></div>
+    <div class="card-body">
+      <div class="card-text offset-md-2 col-md-8">
+        <p>
+          <strong>Duration (min): </strong>
+          <%= @exercise.duration_in_min %>
+        </p>
+        <p>
+          <strong>Activity date: </strong>
+          <%= @exercise.workout_date.strftime("%d.%m.%Y") %>
+        </p>
+        <br>
+        <p>
+          <strong>Workout details:</strong>
+          <%= simple_format @exercise.workout %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <br>
+  <%= link_to 'Back', user_exercises_path(current_user), class: "btn btn-default" %>
+</div>

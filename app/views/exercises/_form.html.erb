@@ -1,0 +1,34 @@
+<%= form_for([current_user, @exercise], html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @exercise.errors.any? %>
+    <div id="error_explanation">
+      <h3>
+        <%= pluralize(@exercise.errors.count, "error") %>
+        prohibited the workout from being saved:
+      </h3>
+      <ul>
+        <% @exercise.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :workout, "Workout details" %>
+    <%= f.text_area :workout, rows: 4, class: "form-control", autofocus: true, autocomplete: "off" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :duration_in_min, "Duration (min)" %>
+    <%= f.number_field :duration_in_min, step: 5, value: 60, class: "form-control col-2" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :workout_date, "Workout date" %>
+    <%= f.date_field :workout_date, class: "form-control" %>
+  </div>  
+
+  <div class="actions">
+    <%= f.submit "Create Workout" %>
+  </div>
+<% end %>
