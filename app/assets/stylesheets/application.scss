@@ -1,0 +1,37 @@
+@import "bootstrap";
+
+body {
+	font-size: 1.3rem;
+	background-color: #FFFCF5;
+	color: #424242;
+}
+
+/* Top Navbar */
+
+.top-navbar {
+	padding-bottom: 30px;
+}
+
+.top-navbar .navbar, .top-navbar .navbar a {
+	padding: 10px;
+	color: #575757;
+	font-weight: bold;
+	background-color: #DE9B00;
+	.navbar-brand {
+		font-size: 1.7rem;
+		margin: auto 30px;
+	}
+	.navbar-text {
+		margin: auto 20px auto 30px;
+	}
+	.nav-item, form {
+		margin: auto 10px;
+	}
+}
+
+/* Main Body */
+
+.card {
+	background-color: #D9D5CE;
+	border-radius: 10px;
+}
