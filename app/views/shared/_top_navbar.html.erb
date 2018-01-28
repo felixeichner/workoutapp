@@ -1,6 +1,6 @@
 <header class="top-navbar" role="banner">
   <nav class="navbar navbar-expand-lg">
-    <%= link_to "Athletes Den", "#", class: "navbar-brand" %>
+    <%= link_to "Athletes Den", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
     </button>
@@ -16,13 +16,22 @@
         </form>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <%= link_to "My Lounge", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Sign out", "#", class: "nav-link" %>
-        </li>
-        <p class="navbar-text">Signed in as John</p>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "My Lounge", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+          <p class="navbar-text">Signed in as <%= current_user.name %></p>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>        
       </ul>
     </div>
   </nav>

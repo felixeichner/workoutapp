@@ -36,3 +36,13 @@ body {
 	background-color: #D9D5CE;
 	border-radius: 10px;
 }
+
+.homeview-btn {
+	background-color: #DE9B00;
+	color: #575757;
+	font-weight: bold;
+}
+.homeview-btn:hover {
+		color: #575757;
+		box-shadow: 0 0 7px 0 rgba(0,0,0,0.2);
+	}
