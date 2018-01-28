@@ -9,7 +9,9 @@ RSpec.feature "Sign up user" do
 		fill_in "Email", with: "test@mail.com"
 		fill_in "Password", with: "password"
 		fill_in "Password confirmation", with: "password"
-		click_button "Sign up"
+		expect {
+			click_button "Sign up"
+		}.to change(User, :count).by(1)
 
 		expect(page).to have_content "You have signed up successfully."
 	end
