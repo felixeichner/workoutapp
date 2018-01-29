@@ -71,6 +71,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    d3-rails (4.10.2)
+      railties (>= 3.1)
     devise (4.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -248,6 +250,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.17)
   coffee-rails (~> 4.2)
+  d3-rails (~> 4.10, >= 4.10.2)
   devise (~> 4.4, >= 4.4.1)
   guard (~> 2.14, >= 2.14.2)
   guard-rspec (~> 4.7, >= 4.7.3)

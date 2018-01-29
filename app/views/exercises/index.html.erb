@@ -1,6 +1,5 @@
 <div class="col-md-7 col-sm-12">
-
-<h3>Workout Listing</h3>
+	<h3>Workout Listing</h3>
 	<div class="card">
 		<% if @exercises.any? %>
 			<div class="card-header row">
@@ -28,4 +27,7 @@
 	</div>
 	<br>
 	<%= link_to "New Workout", new_user_exercise_path(current_user), class: "btn btn-default" %>
+	<br>
+
+	<%= content_tag :div, "", id: "chart", data: { workouts: @exercises } %>
 </div>
