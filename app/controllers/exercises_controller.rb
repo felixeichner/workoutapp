@@ -3,7 +3,7 @@ class ExercisesController < ApplicationController
 	before_action :set_exercise, except: [:index, :new, :create]
 
 	def index
-		@exercises = current_user.exercises.where("workout_date >= ?", Date.today-7)
+		@exercises = User.find(params[:user_id]).exercises.where("workout_date >= ?", Date.today-7)
 	end
 
 	def new
