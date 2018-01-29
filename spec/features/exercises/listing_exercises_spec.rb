@@ -7,9 +7,9 @@ RSpec.feature "Listing Exercises" do
 		@exercise1 = @john.exercises.create(workout: "Running",
 																				workout_date: Date.today, duration_in_min: 60)
 		@exercise2 = @john.exercises.create(workout: "Cycling",
-																				workout_date: 7.days.ago, duration_in_min: 90)
+																				workout_date: Date.today-7, duration_in_min: 90)
 		@exercise3 = @john.exercises.create(workout: "Bodypump class",
-																				workout_date: 8.days.ago, duration_in_min: 50)
+																				workout_date: Date.today-8, duration_in_min: 50)
 	end
 
 	scenario "A user lists exercises of last seven days" do
