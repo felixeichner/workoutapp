@@ -3,8 +3,15 @@
 		<div class="card-body">
 			<h2 class="card-title">Workout Lounge!</h2>
 			<h4 class="card-text">Show off your workout to your friends</h4>
-			<% unless user_signed_in? %>
-				<hr>
+			<hr>
+			<% if user_signed_in? %>
+				<h3 class="card-title">List of Members</h3>
+				<div class="row">
+					<% @athletes.each do |athlete| %>
+						<div class="offset-md-5 col-md-7 text-left"><%= athlete.name %></div>
+					<% end %>
+				</div>
+			<% else %>
 				<p>
 					<%= link_to ">> SIGN UP <<", new_user_registration_path,
 																			 class: "btn btn-lg btn-default homeview-btn" %>
