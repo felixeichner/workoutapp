@@ -10,13 +10,15 @@ RSpec.feature "Editing Exercise" do
 
 	scenario "with valid credentials" do
 		visit "/users/#{@john.id}/exercises"
-		click_link "Edit"
+		find("a[href=\'/users/#{@john.id}/exercises/#{@exercise.id}/edit\']").click
 
 		fill_in "Workout details", with: "Cycling"
 		fill_in "Activity date", with: Date.today
 		fill_in "Duration (min)", with: 60
 		click_button "Update Workout"
 
+		expect(current_path).to eq user_exercise_path(@john, @exercise)
+		expect(page).to have_content "Workout has been updated"
 		expect(page).to have_content "Cycling"
 		expect(page).to have_content Date.today.strftime("%d. %b %Y")
 		expect(page).to have_content "60"
