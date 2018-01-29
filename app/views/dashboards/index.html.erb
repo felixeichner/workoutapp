@@ -7,6 +7,7 @@
 			<% if user_signed_in? %>
 				<h3 class="card-title">List of Members</h3>
 				<div class="row">
+					<div class="members-pagination"><%= will_paginate @athletes %></div>
 					<% @athletes.each do |athlete| %>
 						<div class="offset-md-5 col-md-7 text-left"><%= athlete.name %></div>
 					<% end %>

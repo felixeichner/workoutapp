@@ -18,6 +18,8 @@ gem 'bootstrap',                '~> 4.0'
 gem 'bootstrap-glyphicons',     '~> 0.0.1'
 gem 'devise',                   '~> 4.4', '>= 4.4.1'
 gem 'd3-rails',                 '~> 4.10', '>= 4.10.2'
+gem 'will_paginate-bootstrap4', '~> 0.2.2'
+gem 'faker',                    '~> 1.8', '>= 1.8.7'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

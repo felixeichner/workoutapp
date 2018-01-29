@@ -1,7 +1,17 @@
-User.create!(name: "Felix", email: "felix@mail.com", password: "111111")
+names = []
+100.times do
+	names << Faker::Simpsons.character
+end
+names = names.shuffle.uniq
+names.count.times do
+	name = names.pop
+	User.create!(name: name, email: "#{I18n.transliterate(name.split.join)}@mail.com", password: "111111")
+end
+
 User.create!(name: "Anna", email: "anna@mail.com", password: "111111")
 User.create!(name: "Michael", email: "michael@mail.com", password: "111111")
 User.create!(name: "Peter", email: "peter@mail.com", password: "111111")
+User.create!(name: "Felix", email: "felix@mail.com", password: "111111")
 
 User.all.each do |user|
 		user.exercises.create!(workout: "Running", workout_date: Date.today, duration_in_min: 60)

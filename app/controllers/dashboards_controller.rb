@@ -1,5 +1,5 @@
 class DashboardsController < ApplicationController
 	def index
-		@athletes = User.order(created_at: :desc)
+		@athletes = User.paginate(:page => params[:page]).order(created_at: :desc)
 	end
 end
