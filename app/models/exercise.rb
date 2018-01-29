@@ -9,4 +9,5 @@ class Exercise < ApplicationRecord
   validates :activity_date, presence: true
 
   default_scope { order(workout_date: :desc) }
+  
 end

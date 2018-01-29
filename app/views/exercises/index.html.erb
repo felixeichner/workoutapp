@@ -10,7 +10,7 @@
 
 			<div class="card-body row">
 				<% @exercises.each do |exercise| %>
-					<div class="col-2"><%= exercise.workout_date %></div>
+					<div class="col-2"><%= exercise.workout_date.strftime("%d. %b %Y") %></div>
 					<div class="col-2"><%= exercise.duration_in_min %></div>
 					<div class="col-4"><%= truncate(exercise.workout, length: 25) %></div>
 					<div class="col-4">

@@ -12,7 +12,7 @@ RSpec.feature "Creating Excercise" do
 	scenario "with valid credentials" do
 		fill_in "Duration (min)", with: "40"
 		fill_in "Workout details", with: "Bodypump"
-		fill_in "Workout date", with: "01/01/2018"
+		fill_in "Activity date", with: "01/01/2018"
 		expect(page).to have_link "Back"
 		expect {
 			click_button "Create Workout"
@@ -26,7 +26,7 @@ RSpec.feature "Creating Excercise" do
 	scenario "with invalid credentials" do
 		fill_in "Duration (min)", with: "0"
 		fill_in "Workout details", with: ""
-		fill_in "Workout date", with: "dd/mm/yyyy"
+		fill_in "Activity date", with: "dd/mm/yyyy"
 		expect(page).to have_link "Back"
 		expect {
 			click_button "Create Workout"
@@ -34,5 +34,7 @@ RSpec.feature "Creating Excercise" do
 
 		expect(page).to have_content "prohibited the workout from being saved"
 		expect(page).to have_content "New workout for #{@john.name}"
+		expect(page).to have_content "Activity date can't be blank"
+		expect(page).to have_content "Workout details can't be blank"
 	end
 end

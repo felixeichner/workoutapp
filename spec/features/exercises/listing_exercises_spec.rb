@@ -16,15 +16,15 @@ RSpec.feature "Listing Exercises" do
 		visit "/users/#{@john.id}/exercises"
 
 		expect(page).to have_content @exercise1.workout
-		expect(page).to have_content @exercise1.workout_date
+		expect(page).to have_content @exercise1.workout_date.strftime("%d. %b %Y")
 		expect(page).to have_content @exercise1.duration_in_min
 
 		expect(page).to have_content @exercise2.workout
-		expect(page).to have_content @exercise2.workout_date
+		expect(page).to have_content @exercise2.workout_date.strftime("%d. %b %Y")
 		expect(page).to have_content @exercise2.duration_in_min
 
 		expect(page).not_to have_content @exercise3.workout
-		expect(page).not_to have_content @exercise3.workout_date
+		expect(page).not_to have_content @exercise3.workout_date.strftime("%d. %b %Y")
 		expect(page).not_to have_content @exercise3.duration_in_min
 	end
 

@@ -1,0 +1,8 @@
+<h2 class="col-12 text-center">Update workout for <%= current_user.name %></h2>
+
+<div class="card offset-3 col-md-6">
+  <div class="card-body">
+    <p><%= render "form" %></p>
+    <p><%= link_to "Back", user_exercises_path(current_user), class: "btn btn-default" %></p>
+  </div>
+</div>
