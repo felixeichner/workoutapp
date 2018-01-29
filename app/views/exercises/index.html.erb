@@ -1,3 +1,31 @@
-<div class="col-md-8 col-sm-12">
+<div class="col-md-7 col-sm-12">
+
+<h3>Workout Listing</h3>
+	<div class="card">
+		<% if @exercises.any? %>
+			<div class="card-header row">
+				<div class="col-2">Workout date</div>
+				<div class="col-2">Duration (min)</div>
+				<div class="col-4">Workout details</div>
+			</div>
+
+			<div class="card-body row">
+				<% @exercises.each do |exercise| %>
+					<div class="col-2"><%= exercise.workout_date %></div>
+					<div class="col-2"><%= exercise.duration_in_min %></div>
+					<div class="col-4"><%= truncate(exercise.workout, length: 25) %></div>
+					<div class="col-4">
+						<%= link_to "Show", [current_user, exercise] %> | 
+						<%= link_to "Edit", [:edit, current_user, exercise] %> | 
+						<%= link_to "Delete", [current_user, exercise],
+																	method: :delete, data: { confirm: "Delete Workout?" } %>
+					</div>
+				<% end %>
+			</div>
+		<% else %>
+			<h4 class="card-body">There are no workouts to list</h4>
+		<% end %>
+	</div>
+	<br>
 	<%= link_to "New Workout", new_user_exercise_path(current_user), class: "btn btn-default" %>
 </div>

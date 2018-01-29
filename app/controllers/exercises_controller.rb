@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
 	def index
+		@exercises = current_user.exercises.where("workout_date >= ?", Date.today-7)
 	end
 
 	def new

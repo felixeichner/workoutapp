@@ -4,13 +4,12 @@ RSpec.feature "Creating Excercise" do
 	before do
 		@john = User.create!(name: "John", email: "john@mail.com", password: "password")
 		login_as @john
-	end
-
-	scenario "with valid credentials" do
 		visit "/"
 		click_link "My Lounge"
 		click_link "New Workout"
+	end
 
+	scenario "with valid credentials" do
 		fill_in "Duration (min)", with: "40"
 		fill_in "Workout details", with: "Bodypump"
 		fill_in "Workout date", with: "01/01/2018"
@@ -25,10 +24,6 @@ RSpec.feature "Creating Excercise" do
 	end
 
 	scenario "with invalid credentials" do
-		visit "/"
-		click_link "My Lounge"
-		click_link "New Workout"
-
 		fill_in "Duration (min)", with: "0"
 		fill_in "Workout details", with: ""
 		fill_in "Workout date", with: "dd/mm/yyyy"
