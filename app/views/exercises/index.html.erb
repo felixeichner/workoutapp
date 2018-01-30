@@ -31,3 +31,25 @@
 
 	<%= content_tag :div, "", id: "chart", data: { workouts: @exercises } %>
 </div>
+
+<div class="col-md-5">
+	<div class="placeholder" style="height: 50%; width: 100%; background-color: grey; margin-bottom: 30px;">
+		Chat feature
+	</div>
+
+	<h4 class="text-center"><strong>My Friends</strong></h4>
+	<% if @friendships.any? %>
+		<% @friendships.each do |friendship| %>
+			<div class="card friends-card offset-md-2 col-md-8">
+				<div>
+					<%= link_to friendship.friend.name, user_exercises_path(friendship.friend), class: "float-left" %>
+					<%= link_to "Unfollow", friendships_path(friend_id: friendship.friend_id),
+							method: :delete, data: { confirm: "Unfollow?" },
+							class: "btn btn-sm btn-success float-right" if current_user == friendship.user %>
+				</div>
+			</div>
+		<% end %>
+	<% else %>
+		<h4 class="text-center">There are no friends to list</h4>
+	<% end %>
+</div>
