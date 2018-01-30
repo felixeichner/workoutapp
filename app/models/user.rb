@@ -4,9 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :create_chatroom
+
+
   has_many :exercises
   has_many :friendships
   has_many :friends, through: :friendships, class_name: "User"
+  has_one :room
 
   validates_presence_of :name
   self.per_page = 10
@@ -31,4 +35,9 @@ class User < ApplicationRecord
     self == new_friend || friendships.map(&:friend).include?(new_friend)
   end
 
+  private
+
+    def create_chatroom
+      Room.create(name: "#{self.name}'s chatroom", user: self)
+    end
 end
