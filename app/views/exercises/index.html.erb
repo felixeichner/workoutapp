@@ -45,7 +45,7 @@
 			<div class="card friends-card offset-md-2 col-md-8">
 				<div>
 					<%= link_to friendship.friend.name, user_exercises_path(friendship.friend), class: "float-left" %>
-					<%= link_to "Unfollow", friendships_path(friend_id: friendship.friend_id),
+					<%= link_to "Unfollow", friendship_path(id: friendship.id),
 							method: :delete, data: { confirm: "Unfollow?" },
 							class: "btn btn-sm btn-success float-right" if current_user == friendship.user %>
 				</div>

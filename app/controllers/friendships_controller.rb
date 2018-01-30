@@ -8,6 +8,12 @@ class FriendshipsController < ApplicationController
 	end
 
 	def destroy
+		if current_user.friendships.find(params[:id]).destroy
+			flash[:success] = "You are not following this member anymore"
+		else
+			flash[:danger] = "You only modify your own followings"
+		end
+		redirect_to user_exercises_path(current_user)
 	end
 
 	private

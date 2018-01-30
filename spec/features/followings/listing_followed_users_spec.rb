@@ -7,10 +7,10 @@ RSpec.feature "Listing followed Users" do
 		@marc = User.create!(name: "Marc", email: "marc@mail.com", password: "password")
 		@david = User.create!(name: "David", email: "david@mail.com", password: "password")
 		login_as @john
-		@john.friendships.create!(friend_id: @sarah.id)
-		@john.friendships.create!(friend_id: @marc.id)
-		@sarah.friendships.create!(friend_id: @david.id)
-		@sarah.friendships.create!(friend_id: @john.id)
+		@following1 = @john.friendships.create!(friend_id: @sarah.id)
+		@following2 = @john.friendships.create!(friend_id: @marc.id)
+		@following3 = @sarah.friendships.create!(friend_id: @david.id)
+		@following4 = @sarah.friendships.create!(friend_id: @john.id)
 	end
 
 	scenario "as a logged in user on their lounge page" do
@@ -21,10 +21,10 @@ RSpec.feature "Listing followed Users" do
 		expect(page).to have_link "Marc"
 		expect(page).not_to have_link "John"
 		expect(page).not_to have_link "David"
-		expect(page).to have_link("Unfollow", href: "/friendships?friend_id=#{@sarah.id}")
-		expect(page).to have_link("Unfollow", href: "/friendships?friend_id=#{@marc.id}")
-		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@john.id}")
-		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@david.id}")
+		expect(page).to have_link("Unfollow", href: "/friendships/#{@following1.id}")
+		expect(page).to have_link("Unfollow", href: "/friendships/#{@following2.id}")
+		expect(page).not_to have_link("Unfollow", href: "/friendships/#{@following3.id}")
+		expect(page).not_to have_link("Unfollow", href: "/friendships/#{@following4.id}")
 	end
 
 	scenario "as a logged in user on someone else lounge page" do
@@ -36,10 +36,10 @@ RSpec.feature "Listing followed Users" do
 		expect(page).not_to have_link "Marc"
 		expect(page).to have_link "John"
 		expect(page).to have_link "David"
-		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@sarah.id}")
-		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@marc.id}")
-		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@john.id}")
-		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@david.id}")
+		expect(page).not_to have_link("Unfollow", href: "/friendships/#{@following1.id}")
+		expect(page).not_to have_link("Unfollow", href: "/friendships/#{@following2.id}")
+		expect(page).not_to have_link("Unfollow", href: "/friendships/#{@following3.id}")
+		expect(page).not_to have_link("Unfollow", href: "/friendships/#{@following4.id}")
 	end
 
 end
