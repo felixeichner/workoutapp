@@ -13,12 +13,14 @@
 					<div class="col-2"><%= exercise.workout_date.strftime("%d. %b %Y") %></div>
 					<div class="col-2"><%= exercise.duration_in_min %></div>
 					<div class="col-4"><%= truncate(exercise.workout, length: 25) %></div>
-					<div class="col-4">
-						<%= link_to "Show", [current_user, exercise] %> | 
-						<%= link_to "Edit", [:edit, current_user, exercise] %> | 
-						<%= link_to "Delete", [current_user, exercise],
-																	method: :delete, data: { confirm: "Delete Workout?" } %>
-					</div>
+					<% if current_user == exercise.user %>
+						<div class="col-4">
+							<%= link_to "Show", [current_user, exercise] %> | 
+							<%= link_to "Edit", [:edit, current_user, exercise] %> | 
+							<%= link_to "Delete", [current_user, exercise],
+																		method: :delete, data: { confirm: "Delete Workout?" } %>
+						</div>
+					<% end %>
 				<% end %>
 			</div>
 		<% else %>

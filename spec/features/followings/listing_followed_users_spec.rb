@@ -9,6 +9,8 @@ RSpec.feature "Listing followed Users" do
 		login_as @john
 		@john.friendships.create!(friend_id: @sarah.id)
 		@john.friendships.create!(friend_id: @marc.id)
+		@sarah.friendships.create!(friend_id: @david.id)
+		@sarah.friendships.create!(friend_id: @john.id)
 	end
 
 	scenario "as a logged in user on their lounge page" do
@@ -24,4 +26,20 @@ RSpec.feature "Listing followed Users" do
 		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@john.id}")
 		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@david.id}")
 	end
+
+	scenario "as a logged in user on someone else lounge page" do
+		visit "/users/#{@john.id}/exercises"
+		find("a[href='/users/#{@sarah.id}/exercises']").click
+
+		expect(page).to have_content "My Friends"
+		expect(page).not_to have_link "Sarah"
+		expect(page).not_to have_link "Marc"
+		expect(page).to have_link "John"
+		expect(page).to have_link "David"
+		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@sarah.id}")
+		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@marc.id}")
+		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@john.id}")
+		expect(page).not_to have_link("Unfollow", href: "/friendships?friend_id=#{@david.id}")
+	end
+
 end

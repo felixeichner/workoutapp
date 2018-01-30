@@ -1,9 +1,6 @@
 class FriendshipsController < ApplicationController
 	before_action :authenticate_user!
 
-	def show
-	end
-
 	def create
 		friend = User.find(params[:friend_id])
 		current_user.friendships.create(friendship_params) unless current_user.follows_or_same?(friend)
