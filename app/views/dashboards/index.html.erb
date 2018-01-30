@@ -6,15 +6,19 @@
 		</div>
 	</div>
 	<br>
-	<div class="offset-md-3 col-md-6">
+	<div class="offset-md-2 col-md-8">
 		<% if user_signed_in? %>
-			<h3 class="text-center">List of Members</h3>
+			<h3 class="text-center"><strong>List of Members</strong></h3>
 			<% if @athletes.any? %>
 				<div class="members-pagination"><%= will_paginate @athletes %></div>
 				<% @athletes.each do |athlete| %>
-					<p><%= link_to athlete.name, user_exercises_path(athlete),
-																			 class: "btn btn-lg btn-block btn-default homeview-btn" %></p>
-					
+					<div class="card athlete-card">
+						<div class="card-body">
+							<%= link_to athlete.name, user_exercises_path(athlete), class: "homeview-btn float-left" %>
+							<%= link_to "Follow", friendships_path(friend_id: athlete.id), method: :post,
+									class: "btn btn-success float-right" unless current_user.follows_or_same?(athlete) %>
+						</div>
+					</div>
 				<% end %>
 			<% else %>
 				<h4 class="text-center">There are no athletes to list</h4>

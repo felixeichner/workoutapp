@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :exercises
+  has_many :friendships
+  has_many :friends, through: :friendships, class_name: "User"
 
   validates_presence_of :name
   self.per_page = 10
@@ -24,4 +26,9 @@ class User < ApplicationRecord
   		all
 	  end
   end
+
+  def follows_or_same?(new_friend)
+    self == new_friend || friendships.map(&:friend).include?(new_friend)
+  end
+
 end

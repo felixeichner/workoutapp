@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :users do
   	resources :exercises
   end
+
+  resources :friendships, only: [:show, :create, :destroy]
 end
