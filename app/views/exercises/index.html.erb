@@ -54,23 +54,20 @@
 					</div>
 				</div>
 				<div class="col-9">
-					<div data-channel="rooms" data-room-id=<%= current_room.id %>>
-						<div class="form-inline">
-			        <%= form_for @message do |f| %>
-		            <%= f.text_field :body, id: "message-field",
-		            								 placeholder: "your message...", class: "form-control" %>
-		            <%= f.submit "Post", class: "btn btn-light", id: "post-btn" %>
-			        <% end %>
-			      </div>
-			      <br>
-						<div id="chat-box">
-							<div id="chat-messages">
-								<% @messages.each do |message| %>
-									<%= render partial: 'shared/message', locals: { message: message } %>
-								<% end %>
-							</div>
+					<div id="chat-box" data-channel="rooms" data-room-id=<%= current_room.id %>>
+						<div id="chat-messages">
+							<% @messages.each do |message| %>
+								<%= render partial: 'shared/message', locals: { message: message } %>
+							<% end %>
 						</div>
-			    </div>
+					</div>
+					<div class="form-inline">
+		        <%= form_for @message, remote: true do |f| %>
+	            <%= f.text_field :body, id: "message-field",
+	            								 placeholder: "your message...", class: "form-control" %>
+	            <%= f.submit "Post", class: "btn btn-light", id: "post-btn" %>
+		        <% end %>
+		      </div>
 				</div>
 			</div>
 		</div>

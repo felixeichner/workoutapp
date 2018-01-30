@@ -104,7 +104,7 @@ body {
 	max-height: 400px;
 	overflow: auto;
 	#chat-messages {
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 }
 
