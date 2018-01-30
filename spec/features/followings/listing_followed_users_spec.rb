@@ -19,7 +19,7 @@ RSpec.feature "Listing followed Users" do
 		expect(page).to have_content "My Friends"
 		expect(page).to have_link "Sarah"
 		expect(page).to have_link "Marc"
-		expect(page).not_to have_link "John"
+		expect(page).not_to have_link("John", href: "/users/#{@john.id}")
 		expect(page).not_to have_link "David"
 		expect(page).to have_link("Unfollow", href: "/friendships/#{@following1.id}")
 		expect(page).to have_link("Unfollow", href: "/friendships/#{@following2.id}")

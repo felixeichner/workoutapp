@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships, class_name: "User"
   has_one :room
+  has_many :messages
 
   validates_presence_of :name
   self.per_page = 10

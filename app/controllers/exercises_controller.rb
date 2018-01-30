@@ -3,8 +3,13 @@ class ExercisesController < ApplicationController
 	before_action :set_exercise, except: [:index, :new, :create]
 
 	def index
-		@friendships = User.find(params[:user_id]).friendships
-		@exercises = User.find(params[:user_id]).exercises.where("workout_date >= ?", Date.today-7)
+		@user = User.find(params[:user_id])
+		@friends = @user.friends
+		@exercises = @user.exercises.where("workout_date >= ?", Date.today-7)
+		set_current_room
+		@message = Message.new
+		@messages = current_room.messages if current_room
+		@followers = Friendship.where(friend: current_user)
 	end
 
 	def new
@@ -44,6 +49,15 @@ class ExercisesController < ApplicationController
 	end
 
 	private
+
+		def set_current_room
+			if params[:room_id]
+				@room = Room.find(params[:room_id])
+			else
+				@room = current_user.room
+			end
+			session[:current_room] = @room.id if @room
+		end
 
 		def set_exercise
 			@exercise = current_user.exercises.find(params[:id])

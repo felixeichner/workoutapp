@@ -1,5 +1,5 @@
 <div class="col-md-7 col-sm-12">
-	<h3><%= "#{@exercises.first.user.name}'s " if @exercises.any? %>Workout Listing</h3>
+	<h3><%= "#{@user.name}'s " if @exercises.any? %>Workout Listing</h3>
 	<div class="card">
 		<% if @exercises.any? %>
 			<div class="card-header row">
@@ -13,13 +13,15 @@
 					<div class="col-2"><%= exercise.workout_date.strftime("%d. %b %Y") %></div>
 					<div class="col-2"><%= exercise.duration_in_min %></div>
 					<div class="col-4"><%= truncate(exercise.workout, length: 25) %></div>
-					<% if current_user == exercise.user %>
+					<% if current_user == @user %>
 						<div class="col-4">
 							<%= link_to "Show", [current_user, exercise] %> | 
 							<%= link_to "Edit", [:edit, current_user, exercise] %> | 
 							<%= link_to "Delete", [current_user, exercise],
 																		method: :delete, data: { confirm: "Delete Workout?" } %>
 						</div>
+					<% else %>
+						<div class="col-4"></div>
 					<% end %>
 				<% end %>
 			</div>
@@ -35,19 +37,54 @@
 </div>
 
 <div class="col-md-5">
-	<div class="placeholder" style="height: 50%; width: 100%; background-color: grey; margin-bottom: 30px;">
-		Chat feature
-	</div>
-
+	<% if current_user == @user %>
+		<div class="card">
+			<div class="card-header">
+				<h4 class="text-center"><strong><%= current_room.name %></strong></h4>
+			</div>
+			<div class="card-body row">
+				<div class="col-3" id="followers">
+					<div class="text-center">
+						<%= link_to current_user.name, user_exercises_path(current_user,
+								room_id: current_user.room.id), class: "btn btn-block btn-default" %>
+						<% @followers.each do |follower| %>
+								<%= link_to follower.user.name, user_exercises_path(current_user,
+										room_id: follower.user.room.id), class: "btn btn-block btn-default" %>
+						<% end %>
+					</div>
+				</div>
+				<div class="col-9">
+					<div data-channel="rooms" data-room-id=<%= current_room.id %>>
+						<div class="form-inline">
+			        <%= form_for @message do |f| %>
+		            <%= f.text_field :body, id: "message-field",
+		            								 placeholder: "your message...", class: "form-control" %>
+		            <%= f.submit "Post", class: "btn btn-light", id: "post-btn" %>
+			        <% end %>
+			      </div>
+			      <br>
+						<div id="chat-box">
+							<div id="chat-messages">
+								<% @messages.each do |message| %>
+									<%= render partial: 'shared/message', locals: { message: message } %>
+								<% end %>
+							</div>
+						</div>
+			    </div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+	<br>
 	<h4 class="text-center"><strong>My Friends</strong></h4>
-	<% if @friendships.any? %>
-		<% @friendships.each do |friendship| %>
+	<% if @friends.try(:any?) %>
+		<% @friends.each do |friend| %>
 			<div class="card friends-card offset-md-2 col-md-8">
 				<div>
-					<%= link_to friendship.friend.name, user_exercises_path(friendship.friend), class: "float-left" %>
-					<%= link_to "Unfollow", friendship_path(id: friendship.id),
+					<%= link_to friend.name, user_exercises_path(friend), class: "float-left" %>
+					<%= link_to "Unfollow", @user.friendships.find_by(friend_id: friend.id),
 							method: :delete, data: { confirm: "Unfollow?" },
-							class: "btn btn-sm btn-success float-right" if current_user == friendship.user %>
+							class: "btn btn-sm btn-success float-right" if current_user == @user %>
 				</div>
 			</div>
 		<% end %>

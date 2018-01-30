@@ -1,0 +1,7 @@
+<div clas="message-row">
+	<p class="message-body">
+		<%= message.body %><br>
+		<small>by <%= message.user.name %>, <%= time_ago_in_words(message.created_at) %> ago</small>
+	</p>
+	<hr>
+</div>

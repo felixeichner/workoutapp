@@ -84,6 +84,12 @@ body {
 	margin: 5px 0 5px 30px;
 }
 
+#followers {
+	.btn {
+		margin: 10px auto;
+	}
+}
+
 /* Error Messages */
 
 #error_explanation {
@@ -94,6 +100,13 @@ body {
 	border-color: #f5c6cb;
 }
 
+#chat-box {
+	max-height: 400px;
+	overflow: auto;
+	#chat-messages {
+		overflow-y: scroll;
+	}
+}
 
 /* Footer */
 
