@@ -9,18 +9,22 @@
 	<div class="offset-md-3 col-md-6">
 		<% if user_signed_in? %>
 			<h3 class="text-center">List of Members</h3>
-			<div class="members-pagination"><%= will_paginate @athletes %></div>
-			<% @athletes.each do |athlete| %>
-				<p><%= link_to athlete.name, user_exercises_path(athlete),
-																		 class: "btn btn-lg btn-block btn-default homeview-btn" %></p>
-				
+			<% if @athletes.any? %>
+				<div class="members-pagination"><%= will_paginate @athletes %></div>
+				<% @athletes.each do |athlete| %>
+					<p><%= link_to athlete.name, user_exercises_path(athlete),
+																			 class: "btn btn-lg btn-block btn-default homeview-btn" %></p>
+					
+				<% end %>
+			<% else %>
+				<h4 class="text-center">There are no athletes to list</h4>
 			<% end %>
 		<% else %>
-				<p>
+				<p class="text-center">
 				<%= link_to ">> SIGN UP <<", new_user_registration_path,
 																		 class: "btn btn-lg btn-default homeview-btn" %>
 			</p>
-			<p>
+			<p class="text-center">
 				<%= link_to ">> LOG IN <<", new_user_session_path,
 																		class: "btn btn-default homeview-btn" %>
 			</p>

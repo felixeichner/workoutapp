@@ -10,9 +10,13 @@
         <li class="nav-item">
           <%= link_to "Home", root_path, class: "nav-link #{active('dashboards')}" %>
         </li>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search for friends" aria-label="Search">
-          <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+        <%= form_tag(search_dashboards_path, class: "navbar-form", role: "search") do %>
+          <div class="form-inline">
+            <%= text_field_tag :search_name, nil,
+                               placeholder: "Search for friends", class: "form-control" %>
+            <%= submit_tag "Search", class: "btn btn-light" %>
+          </div>
+        <% end %>
         </form>
       </ul>
       <ul class="navbar-nav ml-auto">

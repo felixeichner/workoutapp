@@ -1,5 +1,5 @@
 <div class="col-md-7 col-sm-12">
-	<h3><%= @exercises.first.user.name %>'s Workout Listing</h3>
+	<h3><%= "#{@exercises.first.user.name}'s " if @exercises.any? %>Workout Listing</h3>
 	<div class="card">
 		<% if @exercises.any? %>
 			<div class="card-header row">

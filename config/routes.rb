@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
 	root "dashboards#index"
 
-	get "dashboards/index"
+	resources :dashboards, only: [:index] do
+		collection do
+			post :search, to: "dashboards#search"
+		end
+	end
 
   devise_for :users
   resources :users do
