@@ -1,24 +1,9 @@
-# README
+# Workout App
+### following the Udemy course
+## "Ruby on Rails - BDD, RSpec and Capybara"
+### by Emmanuel Asante
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### written in Ruby 2.4.1 on Rails 5.1.4
+#### including Bootstrap 4 beta, jQuery and CoffeeScript, Guard
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+> Following the Udemy tutorial this app focuses on behavior driven development with RSpec and Capybara. The main aspect is to write tests first and implement the actual app code by following Guard output error messages and fixing the mentioned bugs.
